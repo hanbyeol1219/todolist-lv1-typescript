@@ -5,7 +5,10 @@ import "./reset.css";
 import "./App.css";
 
 const App = () => {
-  const [todos, setTodos] = useState([{}]);
+  const [todos, setTodos] = useState(
+    () => JSON.parse(localStorage.getItem("todos")) || []
+  );
+  window.localStorage.setItem("todos", JSON.stringify(todos));
 
   const toDoDeleteButtonHandler = (id) => {
     const deleteTodos = todos.filter((todo) => todo.id !== id);
@@ -40,7 +43,7 @@ const App = () => {
       <AddTodo todos={todos} setTodos={setTodos} />
       <div className="todo-list-container">
         <h2 className="working-title">Working..🔥</h2>
-        <ul className="todo-list">
+        <ul className="todo-list" id="working-todos">
           {todos
             .filter((item) => {
               return item.isDone === false;
@@ -58,7 +61,7 @@ const App = () => {
       </div>
       <div className="todo-list-container">
         <h2 className="working-title">Done..🎉</h2>
-        <ul className="todo-list">
+        <ul className="todo-list" id="done-todos">
           {todos
             .filter((item) => {
               return item.isDone === true;
@@ -103,6 +106,7 @@ const AddTodo = ({ todos, setTodos }) => {
     setTitle("");
     setContent("");
   };
+
   return (
     <div>
       <form id="form">
