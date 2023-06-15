@@ -46,7 +46,7 @@ const App = () => {
       <AddTodo todos={todos} setTodos={setTodos} />
       <div className="todo-list-container">
         <h2 className="working-title">Working..🔥</h2>
-        <ul className="todo-list">
+        <ul className="todo-list" id="working-todos">
           {todos
             .filter((item) => {
               return item.isDone === false;
@@ -64,7 +64,7 @@ const App = () => {
       </div>
       <div className="todo-list-container">
         <h2 className="working-title">Done..🎉</h2>
-        <ul className="todo-list">
+        <ul className="todo-list" id="done-todos">
           {todos
             .filter((item) => {
               return item.isDone === true;
