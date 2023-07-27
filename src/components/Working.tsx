@@ -1,4 +1,16 @@
-const Working = ({ item, toDoDeleteButtonHandler, toDoDoneButtonHandler }) => {
+import { Todo } from "../model/todo";
+
+interface WorkingProps {
+  item: Todo;
+  toDoDeleteButtonHandler: (id: string) => void;
+  toDoDoneButtonHandler: (id: string) => void;
+}
+
+const Working = ({
+  item,
+  toDoDeleteButtonHandler,
+  toDoDoneButtonHandler,
+}: WorkingProps): JSX.Element => {
   return (
     <li key={item.id} className="todo-box">
       <div className="todo-content-wrap">

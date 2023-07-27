@@ -5,21 +5,22 @@ import "./App.css";
 import AddTodo from "./components/AddTodo";
 import Working from "./components/Working";
 import Done from "./components/Done";
+import { Todo } from "./model/todo";
 
 const App = () => {
-  const [todos, setTodos] = useState(
-    () => JSON.parse(localStorage.getItem("todos")) || []
+  const [todos, setTodos] = useState<Todo[]>(
+    () => JSON.parse(localStorage.getItem("todos") as string) || []
   );
 
   window.localStorage.setItem("todos", JSON.stringify(todos));
 
-  const toDoDeleteButtonHandler = (id) => {
+  const toDoDeleteButtonHandler = (id: string) => {
     const deleteTodos = todos.filter((todo) => todo.id !== id);
     setTodos(deleteTodos);
     alert("삭제되었습니다!");
   };
 
-  const toDoDoneButtonHandler = (id) => {
+  const toDoDoneButtonHandler = (id: string) => {
     todos.map((item) => {
       if (item.id === id) {
         item.isDone = true;
@@ -28,7 +29,7 @@ const App = () => {
     });
   };
 
-  const toDoCancleButtonHandler = (id) => {
+  const toDoCancleButtonHandler = (id: string) => {
     todos.map((item) => {
       if (item.id === id) {
         item.isDone = false;

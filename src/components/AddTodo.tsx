@@ -1,18 +1,24 @@
-import { useState } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Todo } from "../model/todo";
 
-const AddTodo = ({ todos, setTodos }) => {
+interface AddTodoProps {
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+}
+
+const AddTodo = ({ todos, setTodos }: AddTodoProps): JSX.Element => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const todoTitleChangeHandler = (event) => {
+  const todoTitleChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
-  const todoContentChangeHandler = (event) => {
+  const todoContentChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setContent(event.target.value);
   };
 
-  const toDoAddButtonHandler = (event) => {
+  const toDoAddButtonHandler = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     const newTodo = {

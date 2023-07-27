@@ -1,4 +1,16 @@
-const Done = ({ item, toDoDeleteButtonHandler, toDoCancleButtonHandler }) => {
+import { Todo } from "../model/todo";
+
+interface DoneProps {
+  item: Todo;
+  toDoDeleteButtonHandler: (id: string) => void;
+  toDoCancleButtonHandler: (id: string) => void;
+}
+
+const Done = ({
+  item,
+  toDoDeleteButtonHandler,
+  toDoCancleButtonHandler,
+}: DoneProps): JSX.Element => {
   return (
     <li key={item.id} className="todo-box">
       <div className="todo-content-wrap">
